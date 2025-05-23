@@ -22,9 +22,8 @@ async fn main() {
 		.chain(std::io::stdout())
 		.level(log::LevelFilter::Trace)
 		.level_for("naga", log::LevelFilter::Error)
-		.level_for("wgpu-hal", log::LevelFilter::Error)
-		.level_for("wgpu_hal", log::LevelFilter::Error)
-		.level_for("wgpu_core", log::LevelFilter::Error)
+		.level_for("wgpu-hal", log::LevelFilter::Debug)
+		.level_for("wgpu_core", log::LevelFilter::Debug)
 		.format(move |out, message, record| {
 			out.finish(format_args!(
 				"[{}]{} {} {}",
@@ -40,7 +39,7 @@ async fn main() {
 
 	std::thread::spawn(|| loop {
 		futures::executor::block_on(graphite_editor::node_graph_executor::run_node_graph());
-		std::thread::sleep(std::time::Duration::from_millis(16))
+		// std::thread::sleep(std::time::Duration::from_millis(16))
 	});
 	graphite_editor::application::set_uuid_seed(0);
 
@@ -62,7 +61,7 @@ async fn main() {
 		.invoke_handler(tauri::generate_handler![poll_node_graph, runtime_message])
 		.setup(|_app| {
 			use tauri::Manager;
-			_app.get_webview_window("main").unwrap().open_devtools();
+			// _app.get_webview_window("main").unwrap().open_devtools();
 			Ok(())
 		})
 		.run(tauri::generate_context!())

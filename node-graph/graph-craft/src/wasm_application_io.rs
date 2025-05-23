@@ -218,7 +218,7 @@ impl ApplicationIo for WasmApplicationIo {
 
 		let window = winit::window::WindowBuilder::new()
 			.with_title("Graphite")
-			.with_inner_size(winit::dpi::PhysicalSize::new(800, 600))
+			.with_inner_size(winit::dpi::PhysicalSize::new(1800, 1600))
 			.build(&event_loop)
 			.unwrap();
 

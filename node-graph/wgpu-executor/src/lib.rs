@@ -253,7 +253,7 @@ impl WgpuExecutor {
 			&wgpu::TextureDescriptor {
 				label: None,
 				size: wgpu::Extent3d {
-					width: data.size().0,
+					width: data.size().0 * 4,
 					height: data.size().1,
 					depth_or_array_layers: 1,
 				},

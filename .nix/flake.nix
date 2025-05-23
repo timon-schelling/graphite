@@ -36,7 +36,7 @@
         pkgs-unstable = import nixpkgs-unstable {
           inherit system overlays;
         };
-        
+
         rustc-wasm = pkgs.rust-bin.stable.latest.default.override {
           targets = [ "wasm32-unknown-unknown" ];
           extensions = [ "rust-src" "rust-analyzer" "clippy" "cargo" ];
@@ -87,7 +87,7 @@
           cargo-watch
           cargo-nextest
           cargo-expand
-          
+
           # Profiling tools
           gnuplot
           samply
@@ -103,7 +103,7 @@
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
           GIO_MODULE_DIR="${pkgs.glib-networking}/lib/gio/modules/";
           XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS";
-          
+
 
           shellHook = ''
             alias cargo='mold --run cargo'
